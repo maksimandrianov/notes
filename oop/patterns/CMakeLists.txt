@@ -6,3 +6,4 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -pedantic-errors")
 
 add_executable("strategy" "strategy.cpp")
 add_executable("observer" "observer.cpp")
+add_executable("decorator" "decorator.cpp")
