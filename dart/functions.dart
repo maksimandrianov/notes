@@ -18,6 +18,12 @@ int funcWithFunc2(SumFunc sum, int a , int b) {
   return sum(a, b);
 }
 
+Function getSumClosure(int val) {
+  return (int a) {
+    return val + a;
+  };
+}
+
 void main() {
   print(sum(4, 7));
 
@@ -44,4 +50,7 @@ void main() {
 
   print("${funcWithFunc1(sum, 4, 8)}");
   print("${funcWithFunc2(sum, 4, 8)}");
+
+  var sum5 = getSumClosure(5);
+  print("${sum5(2)}");
 }

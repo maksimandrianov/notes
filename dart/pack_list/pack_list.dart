@@ -1,12 +1,18 @@
 import "dart:html";
 
+import "../loglib/loglib.dart";
+
 class Item {
   String text;
   DivElement _uiElement;
   bool _isPacket = false;
 
   Item(String this.text) {
-
+    if (text.isEmpty) {
+      warn("Item was created with empty text.");
+    } else {
+      info("Item was crated with text: $text");
+    }
   }
 
   DivElement get uiElement {
@@ -15,6 +21,7 @@ class Item {
       _uiElement.classes.add("item");
       _uiElement.text = text;
       _uiElement.onClick.listen((event) => isPacket = !isPacket);
+      _uiElement.onClick.listen((event) => info("Item was updated. New state: $isPacket"));
     }
 
     return _uiElement;
@@ -43,6 +50,8 @@ void addItem() {
 }
 
 void main() {
+  debug("Bulding UI");
+
   var title = new Element.html("<h2>Pack list</h2>");
   document.body.children.add(title);
 
@@ -68,4 +77,7 @@ void main() {
   items.style.border = "1px solid black";
   items.innerHtml = "&nbsp;";
   document.body.children.add(items);
+
+  var logger = new Logger();
+  logger.log("Finished building UI");
 }
